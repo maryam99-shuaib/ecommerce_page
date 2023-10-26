@@ -1,3 +1,10 @@
+@font-face {
+    font-family:Montserrat;
+    src:url(./assessts/fonts/Montserrat-Regular.ttf);
+}
+/* *{
+    outline: 1px solid;
+} */
 body{
     margin: 0px;
     box-sizing: border-box;
@@ -58,12 +65,12 @@ a.nav-link{
     /* justify-content: center; */
     /* justify-items: center; */
 }
-.box{
+.product_box{
     background-color:rgb(0, 90, 0);
     border-radius: 9px;
-    height: 200px;
-    padding: 50px;
-    padding-top: 40px;
+    /* height: 200px; */
+    /* padding: 50px; */
+    /* padding-top: 40px; */
     box-sizing: border-box;
     position: relative;
 }
@@ -71,12 +78,13 @@ button{
     padding:10px 20px;
     border-radius: 20px;
     border: none;
-    background-color: rgb(189, 0, 0);
+    background-color: darkblue;
     color: #fff;
     margin: auto;
-    margin-left: 600px;
+    /* margin-left: 600px; */
     margin-bottom: 10px;
     display:block;
+    cursor: pointer;
 }
 .footer{
     background-color:rgb(0, 90, 0);
@@ -194,11 +202,49 @@ footer a{
     padding:10px 20px;
     border-radius: 20px;
     border: none;
-    background-color: rgb(189, 0, 0);
+    background-color: darkgreen;
     color: #fff;
     margin: auto;
     display:block;
 }
 .cursor{
     cursor: pointer;
+}
+.price_and_button{
+    /* background-color: purple; */
+    display:flex;
+    justify-content: space-between;
+    gap:155px;
+}
+.product_box img{
+    /* height: 100px; */
+    width:100%;
+    /* width:100px; */
+}
+.fivenaira{
+    color: #fff;
+    font-size: 40px;
+    margin-bottom: 4px;
+    /* margin-left: 16px; */
+}
+.productname{
+    color: #fff;
+    font-size: 40px;
+    margin-bottom: 7px;
+    font-family:Montserrat;
+    
+}
+.item_description{
+    padding-inline: 20px;
+}
+@media(max-width:1000px){
+    .SectionThree{
+       grid-template-columns: 1fr; 
+    }
+    .footer{
+        grid-template-columns: 1fr; 
+    }
+    .box_set_section{
+        grid-template-columns: 1fr; 
+    }
 }
