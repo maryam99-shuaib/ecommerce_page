@@ -328,9 +328,16 @@ function AddToCart(product_id){
 function ClosingCart(){
   document.getElementById("cartContainer").style.display="none"
 }
+function closingmobilemenu(){
+  document.getElementById("mobilemenu").style.display="none"
+}
 function openCart(){
   document.getElementById("cartContainer").style.display="block"
 }
+function tugglemobilemenu(){
+  document.getElementById("mobilemenu").style.display="block"
+}
+
 function UpdateCart(){
   var cartContent="";
   for(let cart_item of cart){
