@@ -181,7 +181,7 @@ const products = [
     }
   ]
   
-const cart = [];
+var cart = [];
 var index = 0;
 
 
@@ -317,9 +317,10 @@ function searchProduct(){
 
 
 function AddToCart(product_id){
-    var newCartmember = products.filter((item)=>item.id === product_id)
+    var newCartmember = products.filter((item)=>item.id === product_id)[0]
     // console.log(newCartmember[0]);
-    cart.push(newCartmember[0]);
+    newCartmember.qty= 1;
+    cart.push(newCartmember);
     console.log('cart array--->',cart);
     UpdateCart()
     
@@ -335,8 +336,32 @@ function openCart(){
   document.getElementById("cartContainer").style.display="block"
 }
 function tugglemobilemenu(){
-  document.getElementById("mobilemenu").style.display="block"
+  document.getElementById("mobilemenu").style.display="flex";
 }
+function UpdateCartNotification(){
+  let no_items_in_cart = cart.length
+  if(no_items_in_cart===0){
+   document.getElementById("notification-circle").style.display="none"
+  }
+  else{
+    document.getElementById("notification-circle").innerHTML = no_items_in_cart;
+    document.getElementById("notification-circle").style.display="flex"
+  }
+}
+function DeleteFromCart(cart_id){
+  console.log(cart_id)
+  cart =  cart.filter((item)=>item.id !== cart_id);
+  
+  UpdateCart();
+}
+function IncreaseItemInCart(cart_id){
+  
+  
+}
+function ReduceItemInCart(cart_id){
+ 
+}
+
 
 function UpdateCart(){
   var cartContent="";
@@ -350,11 +375,11 @@ function UpdateCart(){
             <div class="PRODUCTPRICE">
                 5
             </div>
-            <button type="button" class="xtoeachbox" onclick="removeeachitem()">x</button>
+            <button type="button" id="xtoeachbox" onclick="DeleteFromCart(${cart_item.id})">x</button>
             <div class="CartItemQty">
-                <div>+</div>
-                <div>5</div>
-                <div>-</div>
+                <div onclick="IncreaseItemInCart(${cart_item.id})" id="increaseCartitem">+</div>
+                <div>${cart_item.qty}</div>
+                <div onclick="ReduceItemInCart(${cart_item.id})" id="reduceCartitem">-</div>
             </div>
         </div>  
     </div>`
@@ -363,4 +388,5 @@ function UpdateCart(){
   }
   // console.log(productContent);
   document.getElementById("cart_items").innerHTML = cartContent;
+  UpdateCartNotification()
 }
