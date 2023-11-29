@@ -289,9 +289,9 @@ var contact_content = ` <form class="input_section">
 var page_content =  document.getElementById("maincontainer")
 page_content.innerHTML = home_content;
 
-function updateUI(){
+// function updateUI(){
     
-}
+// }
 function pageswitcher(page_name){
   if(page_name=="home"){
     page_content.innerHTML = home_content
@@ -317,10 +317,16 @@ function searchProduct(){
 
 
 function AddToCart(product_id){
+  const index = cart.findIndex(item => item.id === product_id);
+  if (index === -1){
     var newCartmember = products.filter((item)=>item.id === product_id)[0]
     // console.log(newCartmember[0]);
     newCartmember.qty= 1;
     cart.push(newCartmember);
+  }
+  else{
+    cart[index].qty++
+  }
     console.log('cart array--->',cart);
     UpdateCart()
     
@@ -354,13 +360,55 @@ function DeleteFromCart(cart_id){
   
   UpdateCart();
 }
+// finding cart-id
+// function findProductById(cart_id) {
+//   return 
+// }
+
 function IncreaseItemInCart(cart_id){
+  // Find the index of the cart item with matching id
+  const index = cart.findIndex(item => item.id === cart_id);
   
+  // If the item is found in the cart
+  if (index !== -1) {
+      // Increase the 'amount' property by 1
+      cart[index].qty++;
+      console.log(`Amount increased for item with id ${cart_id}. New amount: ${cart[index].qty}`);
+      UpdateCart();
+  } else {
+      console.log(`Item with id ${cart_id} not found in the cart.`);
+  }
+
   
+
 }
 function ReduceItemInCart(cart_id){
- 
+  // Find the index of the cart item with matching id
+  const index = cart.findIndex(item => item.id === cart_id);
+  
+  // If the item is found in the car
+  if (index !== -1) {
+      // Increase the 'amount' property by 1
+      if (cart[index].qty===1){
+        cart =  cart.filter((item)=>item.id !== cart_id)
+      }
+      else{
+        cart[index].qty--;
+        console.log(`Amount reduced for item with id ${cart_id}. New amount: ${cart[index].qty}`);
+      }
+      UpdateCart();
+  } else {
+      console.log(`Item with id ${cart_id} not found in the cart.`);
+  }
+
+  
+
+  
 }
+
+
+
+
 
 
 function UpdateCart(){
@@ -377,9 +425,9 @@ function UpdateCart(){
             </div>
             <button type="button" id="xtoeachbox" onclick="DeleteFromCart(${cart_item.id})">x</button>
             <div class="CartItemQty">
-                <div onclick="IncreaseItemInCart(${cart_item.id})" id="increaseCartitem">+</div>
-                <div>${cart_item.qty}</div>
-                <div onclick="ReduceItemInCart(${cart_item.id})" id="reduceCartitem">-</div>
+              <div onclick="ReduceItemInCart(${cart_item.id})" id="reduceCartitem">-</div>
+              <div>${cart_item.qty}</div>
+              <div onclick="IncreaseItemInCart(${cart_item.id})" id="increaseCartitem">+</div>
             </div>
         </div>  
     </div>`

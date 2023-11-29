@@ -319,6 +319,7 @@ footer a{
     padding-left:10px;
     width: fit-content;
     border-radius: 5px;
+    cursor: pointer;
 }
 .CartItemQty div{
     padding-inline: 20px;
